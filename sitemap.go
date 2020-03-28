@@ -7,7 +7,7 @@ import (
 )
 
 type Url struct {
-	XmlName xml.Name		`xml:"url"`
+	XMLName xml.Name		`xml:"url"`
 	Loc string				`xml:"loc"`
 	ChangeFreq string		`xml:"changefreq"`
 	Priority string			`xml:"priority"`
@@ -15,8 +15,8 @@ type Url struct {
 }
 
 type UrlSet struct {
-	XmlName xml.Name		`xml:"urlset"`
-	Xmlns string			`xml:"xmlns,addr"`
+	XMLName xml.Name		`xml:"urlset"`
+	Xmlns string			`xml:"xmlns,attr"`
 	Urls []Url
 }
 
@@ -27,7 +27,7 @@ func GenerateSiteMap(filePath string, urlSet *UrlSet) error {
 		return err
 	}
 	xmlData := append([]byte(xml.Header), output...)
-	err = ioutil.WriteFile(filePath, xmlData, os.ModeAppend)
+	err = ioutil.WriteFile(filePath, xmlData, os.ModeAppend | 0666)
 	if err != nil {
 		return err
 	}
