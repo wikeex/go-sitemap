@@ -22,7 +22,7 @@ type UrlSet struct {
 
 func GenerateSiteMap(filePath string, urlSet *UrlSet) error {
 	urlSet.Xmlns = "http://www.sitemaps.org/schemas/sitemap/0.9"
-	output, err := xml.MarshalIndent(urlSet, "  ", "    ")
+	output, err := xml.MarshalIndent(urlSet, "", "  ")
 	if err != nil {
 		return err
 	}
